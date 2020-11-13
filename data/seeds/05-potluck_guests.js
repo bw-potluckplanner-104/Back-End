@@ -5,7 +5,7 @@ exports.seed = function (knex) {
       potluck_id: 1,
     },
     {
-      guest: "jakelong",
+      guest: "steverogers",
       potluck_id: 1,
     },
     {
@@ -41,7 +41,7 @@ exports.seed = function (knex) {
       potluck_id: 3,
     },
     {
-      guest: "jakelong",
+      guest: "steverogers",
       potluck_id: 2,
     },
     {
@@ -49,7 +49,7 @@ exports.seed = function (knex) {
       potluck_id: 2,
     },
     {
-      guest: "jakelong",
+      guest: "steverogers",
       potluck_id: 5,
     },
     {

@@ -8,7 +8,7 @@ exports.seed = function (knex) {
     {
       potluck_id: 1,
       item_id: 8,
-      guest: "jakelong",
+      guest: "steverogers",
     },
     {
       potluck_id: 1,
@@ -28,7 +28,7 @@ exports.seed = function (knex) {
     {
       potluck_id: 1,
       item_id: 15,
-      guest: "jakelong",
+      guest: "steverogers",
     },
     {
       potluck_id: 2,
@@ -38,7 +38,7 @@ exports.seed = function (knex) {
     {
       potluck_id: 2,
       item_id: 3,
-      guest: "jakelong",
+      guest: "steverogers",
     },
     {
       potluck_id: 2,
@@ -53,7 +53,7 @@ exports.seed = function (knex) {
     {
       potluck_id: 2,
       item_id: 9,
-      guest: "jakelong",
+      guest: "steverogers",
     },
     {
       potluck_id: 3,
@@ -118,7 +118,7 @@ exports.seed = function (knex) {
     {
       potluck_id: 5,
       item_id: 11,
-      guest: "jakelong",
+      guest: "steverogers",
     },
     {
       potluck_id: 5,

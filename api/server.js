@@ -1,5 +1,6 @@
 const express = require("express");
-const usersRouter = require("./users/users-router.js");
+const authRouter = require("./auth/auth-router");
+const usersRouter = require("./users/users-router");
 const plRouter = require("./potlucks/potlucks-router");
 const listRouter = require("./items/items-router");
 
@@ -7,9 +8,10 @@ const server = express();
 
 server.use(express.json());
 
+server.use("/", authRouter);
 server.use("/users", usersRouter);
 server.use("/potlucks", plRouter);
-server.use("/potluck-items", listRouter);
+server.use("/potluck-item", listRouter);
 
 server.get("/", (req, res) => {
   res.status(200).json({
