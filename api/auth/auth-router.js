@@ -13,9 +13,9 @@ router.post("/signup", async (req, res, next) => {
       });
     }
 
-    const user = await userModel.findBy({ username }).first();
+    const userExists = await userModel.findBy({ username });
 
-    if (user) {
+    if (userExists) {
       return res.status(409).json({
         message: "Username is already taken.",
       });

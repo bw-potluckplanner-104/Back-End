@@ -11,7 +11,8 @@ function getUserById(id) {
 function findBy(filter) {
   return db("users")
     .select("id", "username", "email", "password")
-    .where(filter);
+    .where(filter)
+    .first();
 }
 
 async function add(payload) {
