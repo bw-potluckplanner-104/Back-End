@@ -1,14 +1,25 @@
 const db = require("../../data/config");
 
-function findAll() {
+function getItems() {
   return db("items");
 }
 
-function findById(id) {
+function getItemById(id) {
   return db("items").where("id", id).first();
 }
 
+async function addItem(payload) {
+  const [id] = await db("items").insert(payload);
+  return getItemById(id);
+}
+
+function removeItem(id) {
+  return db("items").where("id", id).del();
+}
+
 module.exports = {
-  findAll,
-  findById,
+  getItems,
+  getItemById,
+  addItem,
+  removeItem,
 };

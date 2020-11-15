@@ -1,18 +1,25 @@
 const db = require("../../data/config");
 
-function find() {
+function getPotlucks() {
   return db("potlucks");
 }
 
-function findById(id) {
+function getPotluckById(id) {
   return db("potlucks").where("id", id).first();
 }
 
-function add(payload) {
-  return db("");
+async function addPotluck(payload) {
+  const [id] = await db("payloads").insert(payload);
+  return getPotluckById(id);
+}
+
+function removePotluck(id) {
+  return db("potlucks").where("id", id).del();
 }
 
 module.exports = {
-  find,
-  findById,
+  getPotlucks,
+  getPotluckById,
+  addPotluck,
+  removePotluck,
 };

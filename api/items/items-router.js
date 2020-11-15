@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const listModel = require("./items-model");
 
-router.get("/all", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-    res.status(200).json(await listModel.findAll());
+    res.status(200).json(await listModel.getItems());
   } catch (err) {
     next(err);
   }
@@ -11,7 +11,7 @@ router.get("/all", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const item = await listModel.findById(req.params.id);
+    const item = await listModel.getItemById(req.params.id);
 
     if (!item) {
       return res.status(404).json({
@@ -23,5 +23,13 @@ router.get("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+// router.delete("/:id", async (req, res, next) => {
+//   try {
+//   } catch (error) {
+
+//     next(err);
+//   }
+// });
 
 module.exports = router;

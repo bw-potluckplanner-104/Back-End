@@ -2,18 +2,18 @@ exports.up = async function (knex) {
   await knex.schema.createTable("users", (tbl) => {
     tbl.increments("id");
     tbl.text("email").notNull().unique();
-    tbl.text("username", 64).notNull().unique();
-    tbl.text("password", 20).notNull();
+    tbl.string("username", 64).notNull().unique();
+    tbl.string("password", 20).notNull();
   });
   await knex.schema.createTable("potlucks", (tbl) => {
     tbl.increments("id").primary().unsigned();
     tbl.date("date").notNull();
-    tbl.time("time").notNull();
-    tbl.text("location", 128).notNull();
+    tbl.string("time", 10).notNull();
+    tbl.string("location", 128).notNull();
   });
   await knex.schema.createTable("items", (tbl) => {
     tbl.increments("id");
-    tbl.text("item", 50);
+    tbl.string("item", 50).notNull();
   });
   await knex.schema.createTable("users_potlucks", (tbl) => {
     tbl

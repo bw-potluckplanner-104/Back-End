@@ -1,17 +1,30 @@
 const express = require("express");
-const authRouter = require("./auth/auth-router");
+const helmet = require("helmet");
+const cors = require("cors");
+const session = require("express-session");
+const authRouter = require("./users/users-auth");
 const usersRouter = require("./users/users-router");
 const plRouter = require("./potlucks/potlucks-router");
 const listRouter = require("./items/items-router");
+const { restrict } = require("./middleware/router-middlware");
 
 const server = express();
 
+server.use(helmet());
+server.use(cors());
 server.use(express.json());
+server.use(
+  session({
+    resave: false,
+    saveUninitialized: false,
+    secret: "keep it secret, keep it safe",
+  })
+);
 
-server.use("/", authRouter);
-server.use("/users", usersRouter);
-server.use("/potlucks", plRouter);
-server.use("/potluck-item", listRouter);
+server.use("/users", authRouter);
+server.use("/users", restrict(), usersRouter);
+server.use("/potlucks", restrict(), plRouter);
+server.use("/potluck-items", restrict(), listRouter);
 
 server.get("/", (req, res) => {
   res.status(200).json({

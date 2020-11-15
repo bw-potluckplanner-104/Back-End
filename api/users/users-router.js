@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const userModel = require("./users-model");
+const { checkUserId } = require("../middleware/router-middlware");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -9,17 +10,19 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", checkUserId(), async (req, res, next) => {
   try {
-    const user = await userModel.getUserById(req.params.id);
+    res.status(200).json(req.user);
+  } catch (err) {
+    next(err);
+  }
+});
 
-    if (!user) {
-      res.status(404).json({
-        message: "The user information you are looking for does not exist.",
-      });
-    }
-
-    res.status(200).json(user);
+router.delete("/:id", checkUserId(), async (req, res, next) => {
+  try {
+    res.status(200).json({
+      message: `${await userModel.removeUser(req.user.id)} file(s) removed.`,
+    });
   } catch (err) {
     next(err);
   }
