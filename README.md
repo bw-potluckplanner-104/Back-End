@@ -25,10 +25,11 @@
 
 ### Endpoints
 
-| Action             | URL        | Method | Response       |
-| :----------------- | :--------- | :----- | :------------- |
-| View list of users | /users     | GET    | Array of users |
-| View specific user | /users/:id | GET    | A user object  |
+| Action             | URL        | Method | Response                          |
+| :----------------- | :--------- | :----- | :-------------------------------- |
+| View list of users | /users     | GET    | Array of users                    |
+| View specific user | /users/:id | GET    | A user object                     |
+| Remove a user      | /users/:id | DELETE | A number record of files removed. |
 
 ### **- Auth -**
 

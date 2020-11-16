@@ -47,7 +47,7 @@ function checkUserData(format) {
                 "Please provide all three: email, username, and password.",
             });
           }
-          const userSU = await User.findBy({ username });
+          const userSU = await User.findUserBy({ username });
           if (userSU) {
             return res.status(409).json({
               message: "Username is already taken.",
@@ -65,7 +65,7 @@ function checkUserData(format) {
               message: "Username and Password required.",
             });
           }
-          const userLI = await User.findBy({ username });
+          const userLI = await User.findUserBy({ username });
           if (!userLI) {
             return res.status(401).json({
               message: "Invalid login credentials.",

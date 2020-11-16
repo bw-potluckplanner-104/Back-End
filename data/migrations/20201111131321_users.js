@@ -10,55 +10,13 @@ exports.up = async function (knex) {
     tbl.date("date").notNull();
     tbl.string("time", 10).notNull();
     tbl.string("location", 128).notNull();
+    tbl.text("organizer").notNull().references("username").inTable("users");
   });
   await knex.schema.createTable("items", (tbl) => {
     tbl.increments("id");
     tbl.string("item", 50).notNull();
   });
-  await knex.schema.createTable("users_potlucks", (tbl) => {
-    tbl
-      .integer("organizer_id")
-      .references("id")
-      .inTable("users")
-      .unsigned()
-      .notNull()
-      .onUpdate("CASCADE")
-      .onDelete("CASCADE");
-    tbl
-      .text("organizer")
-      .references("username")
-      .inTable("users")
-      .notNull()
-      .onUpdate("CASCADE")
-      .onDelete("CASCADE");
-    tbl
-      .integer("potluck_id")
-      .references("id")
-      .inTable("potlucks")
-      .unsigned()
-      .notNull()
-      .onUpdate("CASCADE")
-      .onDelete("CASCADE");
-    tbl.primary(["organizer_id", "potluck_id"]);
-  });
   await knex.schema.createTable("potluck_guests", (tbl) => {
-    tbl
-      .integer("potluck_id")
-      .references("id")
-      .inTable("potlucks")
-      .unsigned()
-      .notNull()
-      .onUpdate("CASCADE")
-      .onDelete("CASCADE");
-    tbl
-      .text("guest")
-      .references("username")
-      .inTable("users")
-      .notNull()
-      .onUpdate("CASCADE")
-      .onDelete("CASCADE");
-  });
-  await knex.schema.createTable("potluck_list", (tbl) => {
     tbl
       .integer("potluck_id")
       .references("id")
@@ -77,19 +35,16 @@ exports.up = async function (knex) {
       .onDelete("CASCADE");
     tbl
       .text("guest")
-      .references("guest")
-      .inTable("potluck_guests")
+      .references("username")
+      .inTable("users")
       .notNull()
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
-    tbl.bool("claimed").defaultTo(true);
   });
 };
 
 exports.down = async function (knex) {
-  await knex.schema.dropTableIfExists("potluck_list");
   await knex.schema.dropTableIfExists("potluck_guests");
-  await knex.schema.dropTableIfExists("users_potlucks");
   await knex.schema.dropTableIfExists("items");
   await knex.schema.dropTableIfExists("potlucks");
   await knex.schema.dropTableIfExists("users");

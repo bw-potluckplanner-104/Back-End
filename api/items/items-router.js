@@ -24,12 +24,30 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-// router.delete("/:id", async (req, res, next) => {
-//   try {
-//   } catch (error) {
+router.post("/", async (req, res, next) => {
+  try {
+    const { item } = req.body;
+    if (!item) {
+      return res.status(401).json({
+        message: "Item required.",
+      });
+    }
+    const newItem = await listModel.addItem({ item });
+    res.status(201).json(newItem);
+  } catch (error) {
+    next(err);
+  }
+});
 
-//     next(err);
-//   }
-// });
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const thisMany = await listModel.removeItem(req.params.id);
+    res.status(200).json({
+      message: `${thisMany} file(s) removed`,
+    });
+  } catch (error) {
+    next(err);
+  }
+});
 
 module.exports = router;
