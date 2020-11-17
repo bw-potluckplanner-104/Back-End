@@ -107,3 +107,5 @@ Guest
 | :------------------------- | :----------------- | :----- | :--------------------- |
 | View list of potluck items | /potluck-items/    | GET    | Array of potluck items |
 | View specific potluck item | /potluck-items/:id | GET    | A potluck item object  |
+| Add an item                | /potluck-items/    | POST   | The newly created item |
+| Delete an item             | /potluck-items/:id | DELETE | A potluck item object  |
