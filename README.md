@@ -25,14 +25,14 @@
 
 ### **- Auth -**
 
-| Action             | URL     | Method | Response             |
-| :----------------- | :------ | :----- | :------------------- |
-| Adds a new user    | /signup | POST   | The newly added user |
-| Authenticates user | /login  | POST   | Authenticated user   |
+| Action          | URL     | Method | Response             |
+| :-------------- | :------ | :----- | :------------------- |
+| Adds a new user | /signup | POST   | The newly added user |
+| Authorizes user | /login  | POST   | Authorized user      |
 
 ### **_The following endpoints are protected!!_**
 
-### **_They can only be accessed by an authenticated user._**
+### **_They can only be accessed by an Authorized user._**
 
 ### Endpoints
 
