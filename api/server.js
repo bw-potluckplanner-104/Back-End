@@ -5,6 +5,7 @@ const session = require("express-session");
 const authRouter = require("./users/users-auth");
 const usersRouter = require("./users/users-router");
 const plRouter = require("./potlucks/potlucks-router");
+const guestRouter = require("./users/guest-router");
 const listRouter = require("./items/items-router");
 const { restrict } = require("./middleware/router-middlware");
 
@@ -24,6 +25,7 @@ server.use(
 server.use("/users", authRouter);
 server.use("/users", restrict(), usersRouter);
 server.use("/potlucks", restrict(), plRouter);
+server.use("/potluck-guests", restrict(), guestRouter);
 server.use("/potluck-items", restrict(), listRouter);
 
 server.get("/", (req, res) => {

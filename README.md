@@ -23,14 +23,6 @@
 | username | string           | required, unique, 64 character max                  |
 | password | string           | required, 20 character max                          |
 
-### Endpoints
-
-| Action             | URL        | Method | Response                          |
-| :----------------- | :--------- | :----- | :-------------------------------- |
-| View list of users | /users     | GET    | Array of users                    |
-| View specific user | /users/:id | GET    | A user object                     |
-| Remove a user      | /users/:id | DELETE | A number record of files removed. |
-
 ### **- Auth -**
 
 | Action             | URL           | Method | Response             |
@@ -38,11 +30,27 @@
 | Adds a new user    | /users/signup | POST   | The newly added user |
 | Authenticates user | /users/login  | POST   | Authenticated user   |
 
----
-
 ### **_The following endpoints are protected!!_**
 
 ### **_They can only be accessed by an authenticated user._**
+
+### Endpoints
+
+User
+
+| Action             | URL        | Method | Response                          |
+| :----------------- | :--------- | :----- | :-------------------------------- |
+| View list of users | /users     | GET    | Array of users                    |
+| View specific user | /users/:id | GET    | A user object                     |
+| Remove a user      | /users/:id | DELETE | A number record of files removed. |
+
+Guest
+
+| Action              | URL                 | Method | Response                          |
+| :------------------ | :------------------ | :----- | :-------------------------------- |
+| View list of guests | /potluck-guests     | GET    | Array of guests                   |
+| View specific guest | /potluck-guests/:id | GET    | A guest object                    |
+| Remove a guest      | /potluck-guests/:id | DELETE | A number record of files removed. |
 
 ## Potlucks
 

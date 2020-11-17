@@ -6,7 +6,7 @@ const { checkUserData } = require("../middleware/router-middlware");
 
 router.post("/signup", checkUserData("signup"), async (req, res, next) => {
   try {
-    // Add a new user with the information from the request body.
+    // Add a new user with the information passed down from my middleware function.
     // Store it in a variable to pass to the response.
     // While adding the password to the payload object hash it (using bcryptjs' hash method) for security reasons.
     const newUser = await userModel.addUser({
@@ -15,7 +15,7 @@ router.post("/signup", checkUserData("signup"), async (req, res, next) => {
       password: await bcrypt.hash(req.user.password, 15),
     });
 
-    // // Send the newly created user as the response with status code 201.
+    // Send the newly created user as the response with status code 201.
     res.status(201).json(newUser);
   } catch (err) {
     next(err);
