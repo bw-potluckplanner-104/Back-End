@@ -22,7 +22,7 @@ server.use(
   })
 );
 
-server.use("/users", authRouter);
+server.use("/", authRouter);
 server.use("/users", restrict(), usersRouter);
 server.use("/potlucks", restrict(), plRouter);
 server.use("/potluck-guests", restrict(), guestRouter);
